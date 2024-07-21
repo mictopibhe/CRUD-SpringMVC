@@ -1,5 +1,6 @@
-package pl.davidduke;
+package pl.davidduke.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,12 +16,11 @@ import org.thymeleaf.templatemode.TemplateMode;
 @ComponentScan(basePackages = { "pl.davidduke" })
 public class WebConfig implements WebMvcConfigurer {
 
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-        registry.addViewController("/hello").setViewName("hello");
+    @Autowired
+    public WebConfig(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
     @Override
