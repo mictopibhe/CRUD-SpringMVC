@@ -2,10 +2,12 @@ package pl.davidduke.dao;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Component;
 import pl.davidduke.model.Person;
 
 import java.util.List;
 
+@Component
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PersonDAO {
     List<Person> people = List.of(
