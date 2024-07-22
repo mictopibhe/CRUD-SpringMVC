@@ -12,10 +12,10 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PersonDAO {
     private List<Person> people = new ArrayList<>(List.of(
-            new Person(1, "Tom"),
-            new Person(2, "Bob"),
-            new Person(3, "Jack"),
-            new Person(4, "Jane")
+            new Person(1, "Tom", 22, "test@gmail.com"),
+            new Person(2, "Bob", 99, "test@ukr.net"),
+            new Person(3, "Jack", 11, "pes@gmail.com"),
+            new Person(4, "Jane", 45, "kitpes@gmail.com")
     ));
 
     public List<Person> getPeople() {
@@ -34,6 +34,8 @@ public class PersonDAO {
     public void updatePerson(int id, Person person) {
         Person oldPerson = getPerson(id);
         oldPerson.setName(person.getName());
+        oldPerson.setAge(person.getAge());
+        oldPerson.setEmail(person.getEmail());
     }
 
     public void deletePerson(int id) {

@@ -11,4 +11,6 @@ import lombok.experimental.FieldDefaults;
 public class Person {
     long id;
     String name;
+    int age;
+    String email;
 }
