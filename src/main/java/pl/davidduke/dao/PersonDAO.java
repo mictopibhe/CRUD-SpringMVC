@@ -27,12 +27,12 @@ public class PersonDAO {
 
     public Person getPerson(int id) {
         return jdbcTemplate.query("SELECT * FROM person WHERE id = ?",
-                        new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
+                        new BeanPropertyRowMapper<>(Person.class), id)
                 .stream().findAny().orElse(null);
     }
 
     public void savePerson(Person person) {
-        jdbcTemplate.update("INSERT INTO person VALUES (1, ?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO person(name, age, email) VALUES (?, ?, ?)",
                 person.getName(), person.getAge(), person.getEmail());
     }
 
