@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import pl.davidduke.model.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -29,6 +30,12 @@ public class PersonDAO {
         return jdbcTemplate.query("SELECT * FROM person WHERE id = ?",
                         new BeanPropertyRowMapper<>(Person.class), id)
                 .stream().findAny().orElse(null);
+    }
+
+    public Optional<Person> getPerson(String email) {
+        return jdbcTemplate.query("SELECT * FROM person WHERE email=?",
+                new BeanPropertyRowMapper<>(Person.class), email)
+                .stream().findAny();
     }
 
     public void savePerson(Person person) {
